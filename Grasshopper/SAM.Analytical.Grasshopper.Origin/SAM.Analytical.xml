@@ -1,0 +1,603 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SAM.Analytical</name>
+    </assembly>
+    <members>
+        <member name="M:SAM.Analytical.AdjacencyCluster.GetSpaces(System.Collections.Generic.IEnumerable{SAM.Geometry.Spatial.Point3D},System.Boolean,System.Double,System.Double)">
+            <summary>
+            Gets spaces for given points
+            </summary>
+            <param name="point3Ds">Points to be checked</param>
+            <param name="spaceLocation"> consider points as space locatioon (if point3D is on shell of adjacent spaces take upper space)</param>
+            <param name="silverSpacing">Silver spacing tolerance</param>
+            <param name="tolerance">Tolerance</param>
+            <returns>List of List of spaces</returns>
+        </member>
+        <member name="M:SAM.Analytical.AdjacencyCluster.GetSpaces(SAM.Geometry.Spatial.Point3D,System.Boolean,System.Double,System.Double)">
+            <summary>
+            Gets spaces for given point
+            </summary>
+            <param name="point3D">Poins to be checked</param>
+            <param name="spaceLocation"> consider point as space locatioon (if point3D is on shell of adjacent spaces take upper space)</param>
+            <param name="silverSpacing">Silver spacing tolerance</param>
+            <param name="tolerance">Tolerance</param>
+            <returns>List of List of spaces</returns>
+        </member>
+        <member name="T:SAM.Analytical.Boundary2D">
+            <summary>
+            Boundary2D - list of BoundaryEdges2DLoops on a given plane and may include internal edges (as list of Edges2DLoops)
+            </summary>
+            <seealso cref="T:SAM.Core.SAMObject" />
+        </member>
+        <member name="F:SAM.Analytical.Boundary2D.externalEdge2DLoop">
+            <summary>
+            The external edge2d loop
+            </summary>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.#ctor(SAM.Analytical.Boundary2D)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAM.Analytical.Boundary2D"/> class.
+            </summary>
+            <param name="boundary2D">The boundary2d.</param>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.#ctor(SAM.Analytical.BoundaryEdge2DLoop)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAM.Analytical.Boundary2D"/> class.
+            </summary>
+            <param name="edge2DLoop">The edge2d loop.</param>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.#ctor(SAM.Geometry.Spatial.IClosedPlanar3D)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAM.Analytical.Boundary2D"/> class.
+            Replaces geometry closedPlanar3D for Analytical Boundary2D including internal and external  
+            </summary>
+            <param name="closedPlanar3D">The closed planar3d.</param>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.#ctor(SAM.Geometry.Planar.IClosed2D)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAM.Analytical.Boundary2D"/> class.
+            replace geometry closed2D for Analytical Boundary2D including internal and external  
+            </summary>
+            <param name="closed2D">The closed2d.</param>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.#ctor(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAM.Analytical.Boundary2D"/> class.
+            </summary>
+            <param name="jObject">The jobject.</param>
+        </member>
+        <member name="P:SAM.Analytical.Boundary2D.ExternalEdge2DLoop">
+            <summary>
+            Gets the external edge2d loop.
+            </summary>
+            <value>
+            The external edge2d loop.
+            </value>
+        </member>
+        <member name="P:SAM.Analytical.Boundary2D.InternalEdge2DLoops">
+            <summary>
+            Gets the internal edge2d loops.
+            </summary>
+            <value>
+            The internal edge2d loops.
+            </value>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.GetEdge3DLoop(SAM.Geometry.Spatial.Plane)">
+            <summary>
+            Gets the edge3d loop.
+            </summary>
+            <param name="plane">The plane.</param>
+            <returns>
+              <see cref="T:SAM.Analytical.BoundaryEdge3DLoop"/>
+            </returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.GetInternalEdge3DLoops(SAM.Geometry.Spatial.Plane)">
+            <summary>
+            Gets the internal edge3d loops.
+            </summary>
+            <param name="plane">The plane.</param>
+            <returns>
+              <see cref="T:System.Collections.Generic.List`1"/>
+            </returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.GetInternalClosedPlanar3Ds(SAM.Geometry.Spatial.Plane)">
+            <summary>
+            Gets the internal closed planar3ds.
+            </summary>
+            <param name="plane">The plane.</param>
+            <returns>
+              <see cref="T:System.Collections.Generic.List`1"/>
+            </returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.GetFace3D(SAM.Geometry.Spatial.Plane)">
+            <summary>
+            Gets the face3d.
+            </summary>
+            <param name="plane">The plane.</param>
+            <returns>
+              <see cref="T:SAM.Geometry.Spatial.Face3D"/>
+            </returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.FromJObject(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Froms the jobject.
+            </summary>
+            <param name="jObject">The jobject.</param>
+            <returns>
+              <see cref="T:System.Boolean"/>
+            </returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.ToJObject">
+            <summary>
+            Converts to jobject.
+            </summary>
+            <returns>
+              <see cref="T:Newtonsoft.Json.Linq.JObject"/>
+            </returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.GetPlanarBoundary3D(SAM.Geometry.Spatial.Plane)">
+            <summary>
+            Gets the planar boundary3d.
+            </summary>
+            <param name="plane">The plane.</param>
+            <returns>
+              <see cref="T:SAM.Analytical.PlanarBoundary3D"/>
+            </returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.Create(System.Collections.Generic.List{SAM.Analytical.BoundaryEdge2DLoop},System.Collections.Generic.List{SAM.Analytical.BoundaryEdge2DLoop}@)">
+            <summary>
+            Creates the specified edge2d loops.
+            </summary>
+            <param name="edge2DLoops">The edge2d loops.</param>
+            <param name="edge2DLoops_Outside">The edge2d loops outside.</param>
+            <returns name="Boundary2D">List of Boundary2></returns>
+        </member>
+        <member name="M:SAM.Analytical.Boundary2D.Create(System.Collections.Generic.List{SAM.Analytical.BoundaryEdge2DLoop})">
+            <summary>
+            Creates the specified edge2 d loops.
+            </summary>
+            <param name="edge2DLoops">The edge2 d loops.</param>
+            <returns name="Boundary2D">List of Boundary2D</returns>
+        </member>
+        <member name="P:SAM.Analytical.DegreeOfActivity.Sensible">
+            <summary>
+            Dry (sensible) total heat emission [W/p]
+            </summary>
+        </member>
+        <member name="P:SAM.Analytical.DegreeOfActivity.Latent">
+            <summary>
+            Humid (latent) heat emission [W/p]
+            </summary>
+        </member>
+        <member name="M:SAM.Analytical.Convert.ToString(System.Int32)">
+            <summary>
+            Converts hour index to string default Year 2015
+            </summary>
+            <param name="hourIndex">Value usualy between 0 and 8759 representing hour in year</param>
+            <returns>String</returns>
+        </member>
+        <member name="M:SAM.Analytical.Convert.ToDateTime(System.Int32)">
+            <summary>
+            Converts hour index to dateTime default Year 2015
+            </summary>
+            <param name="hourIndex">Value usually between 0 and 8759 representing hour in year</param>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:SAM.Analytical.Create.DegreeOfActivity(SAM.Analytical.ActivityLevel,System.String,System.Double)">
+            <summary>
+            DegreeOfActivity created base on VDI 2078 2015
+            </summary>
+            <param name="activityLevel">ActivityLevel </param>
+            <param name="name"> Name of DegreeOfActivity</param>
+            <param name="temperature">Room temperature [C]</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAM.Analytical.Create.Emitter(SAM.Analytical.EmitterType)">
+            <summary>
+            Creates Emitter based on https://www.edsl.net/htmlhelp/Building_Simulator/ [Radiant Property Parameters]
+            </summary>
+            <param name="emitterType">EmitterType</param>
+            <returns>Emitter</returns>
+        </member>
+        <member name="T:SAM.Analytical.AirSupplyMethod">
+            <summary>
+            Air Supply Method
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.AirSupplyMethod.Undefined">
+            <summary>
+            Undefined Air Supply Method
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.AirSupplyMethod.Outside">
+            <summary>
+            Outside Air Supply Method
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.AirSupplyMethod.Total">
+            <summary>
+            Total Air Supply Method
+            </summary>
+        </member>
+        <member name="T:SAM.Analytical.ApertureType">
+            <summary>
+            Analytical Aperture Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ApertureType.Undefined">
+            <summary>
+            Undefined Analytical Aperture Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ApertureType.Window">
+            <summary>
+            Window Analytical Aperture Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ApertureType.Door">
+            <summary>
+            Door Analytical Aperture Type
+            </summary>
+        </member>
+        <member name="T:SAM.Analytical.EmitterType">
+            <summary>
+            https://www.edsl.net/htmlhelp/Building_Simulator/ [Radiant Property Parameters, Calculation of View Coefficients]
+            </summary>
+        </member>
+        <member name="T:SAM.Analytical.DefaultGasType">
+            <summary>
+            Default Gas Types
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.DefaultGasType.Undefined">
+            <summary>
+            Undefined Gas Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.DefaultGasType.Air">
+            <summary>
+            Air Gas Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.DefaultGasType.Xenon">
+            <summary>
+            Xenon Gas Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.DefaultGasType.Argon">
+            <summary>
+            Argon Gas Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.DefaultGasType.Krypton">
+            <summary>
+            Krypton Gas Type
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.DefaultGasType.SulfurHexaFluoride">
+            <summary>
+            Sulfur HexaFluoride (SF6) Gas Type
+            </summary>
+        </member>
+        <member name="T:SAM.Analytical.ActivityLevel">
+            <summary>
+            Analytical ActivityLevel according to VDI 2078 2015.
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ActivityLevel.Undefined">
+            <summary>
+            Undefined ActivityLevel
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ActivityLevel.First">
+            <summary>
+            Sitting, relaxed 100W/person in total
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ActivityLevel.Second">
+            <summary>
+            Sitting activity (office, school, lab) 125W/person in total
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ActivityLevel.Third">
+            <summary>
+            Standing, light activity (shop, lab, light industry) 170W/person in total
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.ActivityLevel.Fourth">
+            <summary>
+            Standing, moderate activity (lab assistant, working with machinery) 210W/person in total
+            </summary>
+        </member>
+        <member name="T:SAM.Analytical.Aperture">
+            <summary>
+            Analytical Aperture object which stores information about Winodws and Doors
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.Aperture.planarBoundary3D">
+            <summary>
+            Planar Boundary 3D of Aperture
+            </summary>
+        </member>
+        <member name="M:SAM.Analytical.Aperture.#ctor(SAM.Analytical.Aperture)">
+            <summary>
+             Constructor for Analytical Aperture
+            </summary>
+            <param name="aperture">Other Aperture</param>
+        </member>
+        <member name="M:SAM.Analytical.Aperture.Transform(SAM.Geometry.Spatial.Transform3D,System.Boolean,System.Boolean)">
+            <summary>
+            TEMPORARY METHOD to Transform Aperture with Plane. Find the way to use Transform(Transform3D transform3D) method
+            </summary>
+            <param name="transform3D">Transform3D</param>
+            <param name="flipHand">Flip Hand</param>
+            <param name="flipFacing">Flip Facing</param>
+        </member>
+        <member name="T:SAM.Analytical.Panel">
+            <summary>
+            SAM Analytical Panel stores information about shape and properties of building boundary such as Wall, Floor, Roof, Slab etc.
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.Panel.panelType">
+            <summary>
+            Type of the Panel such as Wall, Ceiling etc.
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.Panel.planarBoundary3D">
+            <summary>
+            Planar Boundary 3D of Panel
+            </summary>
+        </member>
+        <member name="F:SAM.Analytical.Panel.apertures">
+            <summary>
+            Apertures being hosted on Panel (Doors, Winodows, Skylight etc.)
+            </summary>
+        </member>
+        <member name="M:SAM.Analytical.Panel.#ctor(SAM.Analytical.Panel)">
+            <summary>
+            Creates new instance of panel based on another panel
+            </summary>
+            <param name="panel">SAM Analytical Panel</param>
+        </member>
+        <member name="M:SAM.Analytical.Panel.#ctor(SAM.Analytical.Panel,SAM.Analytical.Construction)">
+            <summary>
+            Creates new Panles by given Panel and New Construction
+            </summary>
+            <param name="panel">SAM Analytical Panel</param>
+            <param name="construction">SAM Analytical Construction</param>
+        </member>
+        <member name="M:SAM.Analytical.Panel.#ctor(SAM.Analytical.Panel,SAM.Analytical.PanelType)">
+            <summary>
+            Creates new Panles by given Panel and new PanelType
+            </summary>
+            <param name="panel">SAM Analytical Panel</param>
+            <param name="panelType">SAM Analytical PanelType</param>
+        </member>
+        <member name="M:SAM.Analytical.Panel.#ctor(System.Guid,SAM.Analytical.Panel,SAM.Geometry.Spatial.Face3D,System.Collections.Generic.IEnumerable{SAM.Analytical.Aperture},System.Boolean,System.Double,System.Double)">
+            <summary>
+            Creates SAM Analytical Panel using information from existing panel and updating its geometry to given face
+            </summary>
+            <param name="guid">New Guid of panel</param>
+            <param name="panel">SAM Analytical Panel</param>
+            <param name="face">New face for Panel</param>
+            <param name="apertures">Additional apertures will be added to panel (panel apertures will be included automatically).</param>
+            <param name="trimGeometry">Trim apertures geometry to make sure it fits on panel</param>
+            <param name="minArea">Minimal area of aperture to be added to panel</param>
+            <param name="maxDistance">Max distance between panel and aperture to be added</param>
+        </member>
+        <member name="M:SAM.Analytical.Panel.#ctor(System.Guid,SAM.Analytical.Panel,SAM.Analytical.PlanarBoundary3D)">
+            <summary>
+            This constructor does not copy apertures acorss
+            </summary>
+            <param name="guid">New Guid for Panel</param>
+            <param name="panel">Old Panel used as base</param>
+            <param name="planarBoundary3D">New PlanarBoundary</param>
+        </member>
+        <member name="M:SAM.Analytical.Panel.GetFace3D(System.Boolean)">
+            <summary>
+            Gets Geometrical Representation of Panel (None Analytical Data)
+            </summary>
+            <returns name="face3D">SAM Geometry Face3D</returns>
+        </member>
+        <member name="M:SAM.Analytical.Panel.Transform(SAM.Geometry.Spatial.Transform3D)">
+            <summary>
+            Transform Panel and Apertures by given Transform. Works only if Panel and Apertures plane axes are similar!
+            </summary>
+            <param name="transform3D">Transform3D to be applied</param>
+        </member>
+        <member name="M:SAM.Analytical.Modify.OrientPartitions(SAM.Analytical.ArchitecturalModel,System.Boolean,System.Double,System.Double)">
+            <summary>
+            Update Partitions normals to point out outside direction
+            </summary>
+            <param name="architecturalModel">SAM Architectural Model</param>
+            <param name="includeOpenings">Update Normals of Openings</param>
+            <param name="silverSpacing">Sliver Spacing Tolerance</param>
+            <param name="tolerance">Distance Tolerance</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SAM.Analytical.Modify.OrientPartitions(SAM.Analytical.ArchitecturalModel,SAM.Analytical.Space,System.Boolean,System.Double,System.Double)" -->
+        <!-- Badly formed XML comment ignored for member "M:SAM.Analytical.Query.OrientedPartitions(SAM.Analytical.ArchitecturalModel,SAM.Analytical.Space,System.Boolean,System.Collections.Generic.List{SAM.Analytical.IPartition}@,System.Double,System.Double)" -->
+        <!-- Badly formed XML comment ignored for member "M:SAM.Analytical.Query.OrientedPartitions(SAM.Analytical.ArchitecturalModel,SAM.Analytical.Space,System.Boolean,System.Double,System.Double)" -->
+        <member name="M:SAM.Analytical.Query.Triangulate(SAM.Analytical.AdjacencyCluster,System.Boolean,System.Boolean,System.Boolean,System.Double)">
+            <summary>
+            Trangulates Panels and Apertures in given AdjacencyCLuster
+            </summary>
+            <param name="adjacencyCluster">AdjacencyCluster</param>
+            <param name="includePanels">Triangulate Panels</param>
+            <param name="includeApertures">Traingulate Apertures</param>
+            <param name="internalEdgesOnly">Triangule only the panels which have Internal Edges</param>
+            <param name="tolerance">Tolerance</param>
+            <returns>AdjacencyCluster</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.Shells(System.Collections.Generic.IEnumerable{SAM.Analytical.Panel},System.Double,System.Double,System.Double)">
+            <summary>
+            Method creates Shells based on panels and given offset from level.
+            </summary>
+            <param name="panels">Panels</param>
+            <param name="offset">Offset from Level</param>
+            <param name="snapTolerance">Snap Tolerance</param>
+            <param name="tolerance">Tolerance</param>
+            <returns>List of Shells</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.CalculatedInfiltrationAirFlow(SAM.Analytical.Space)">
+            <summary>
+            Calculates Infiltration Air Flow [m3/s]
+            </summary>
+            <param name="space"></param>
+            <returns>Air Flow [m3/s]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.AirspaceConvectiveHeatTransferCoefficient(System.Double,System.Double)">
+            <summary>
+            Calculates the airspace conduction/convection coefficient in Opaque Construction according to BS EN ISO 6946:2017 [W/(m2K)]
+            </summary>
+            <param name="angle">Angle of heat flow direction in radians (measured in 2D from Upward direction (0, 1) Vector2D.SignedAngle(Vector2D)), angle less than 0 considered as downward direction</param>
+            <param name="thickness">Air Gap Spacing [m]</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.AirspaceIntersurfaceEmittance(System.Double,System.Double)">
+            <summary>
+            Interfurface Emittance for Airspace according to BS EN ISO 6946:2017 [-]
+            </summary>
+            <param name="surfaceEmissivity_1">Hemispherical Emissivity of the surface 1</param>
+            <param name="surfaceEmissivity_2">Hemispherical Emissivity of the surface 2</param>
+            <returns>Air Intersurface Emittance</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.AirspaceRadiativeCoefficient(System.Double,System.Double,System.Double)">
+            <summary>
+            Airspace Radiative Coeffiicient according to BS EN ISO 6946:2017 [W/m2K]
+            </summary>
+            <param name="meanTemperature">The mean thermodynamic temperature of the surface and of its surroundings [K]</param>
+            <param name="surfaceEmissivity_1">Hemispherical Emissivity of the surface 1</param>
+            <param name="surfaceEmissivity_2">Hemispherical Emissivity of the surface 2</param>
+            <returns>Airspace Radiative Coefficient [W/m2K]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.AirspaceThermalResistance(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Thermal Resistance of airspace in Opaque Construction according to BS EN ISO 6946:2017 [m2K/W]
+            </summary>
+            <param name="angle">Angle of heat flow direction in radians (measured in 2D from Upward direction (0, 1) Vector2D.SignedAngle(Vector2D)), angle less than 0 considered as downward direction</param>
+            <param name="thickness">Air Gap Spacing [m]</param>
+            <param name="meanTemperature">The mean thermodynamic temperature of the surface and of its surroundings [K]</param>
+            <param name="surfaceEmissivity_1">Hemispherical Emissivity of the surface 1</param>
+            <param name="surfaceEmissivity_2">Hemispherical Emissivity of the surface 2</param>
+            <returns>Airspace Thermal Resistance [m2K/W]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.BlackBodySurfaceRadiativeCoefficient(System.Double)">
+            <summary>
+            The Radiative Coefficient for a black-body surface according to BS EN ISO 6946:2017 [W/m2K]
+            </summary>
+            <param name="meanTemperature">The mean thermodynamic temperature of the surface and of its surroundings [K]</param>
+            <returns>Black-Body Surface Radiative Coefficient [W/m2K]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.NusseltNumber(SAM.Core.FluidMaterial,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Nusselt Number (Nu) according to EN 673:1997 [-]
+            </summary>
+            <param name="fluidMaterial">SAM Fluid Material</param>
+            <param name="temperatureDifference">Temperature difference between glass surfaces bounding the fluid space</param>
+            <param name="width">Width of the space , default 0.0012m</param>
+            <param name="meanTemperature">Mean Temperature</param>
+            <param name="angle">Angle of heat flow direction in radians (measured in 2D from Upward direction (0, 1) Vector2D.SignedAngle(Vector2D)), angle less than 0 considered as downward direction</param>
+            <returns>Nusselt Number (Nu) [-]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.NusseltNumber_ConstantAndExponent(SAM.Core.FluidMaterial,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Nusselt Number (Nu) according to EN 673:1997 [-]
+            </summary>
+            <param name="fluidMaterial">SAM Fluid Material</param>
+            <param name="temperatureDifference">Temperature difference between glass surfaces bounding the fluid space</param>
+            <param name="width">Width of the space</param>
+            <param name="meanTemperature">Mean Temperature</param>
+            <param name="constant">Constant (A) value for equation Nu = A(Gr * Pr)^n</param>
+            <param name="exponent">Exponent (n) value for equation Nu = A(Gr * Pr)^n</param>
+            <returns>Nusselt Number (Nu) [-]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.GrashofNumber(SAM.Core.FluidMaterial,System.Double,System.Double,System.Double)">
+            <summary>
+            Grashof Number (Gr) according to EN 673:1997 [-]
+            </summary>
+            <param name="fluidMaterial">SAM Fluid Material</param>
+            <param name="temperatureDifference">Temperature difference between glass surfaces bounding the fluid space</param>
+            <param name="width">Width of the space</param>
+            <param name="meanTemperature">Mean Temperature</param>
+            <returns>Grashof Number (Gr) [-]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.PrandtlNumber(SAM.Core.FluidMaterial)">
+            <summary>
+            Prandtl Number (Pr) according to EN 673:1997 [-]
+            </summary>
+            <param name="fluidMaterial">SAM Fluid Material</param>
+            <returns>Prandtl Number (Pr) [-]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.HeatTransferCoefficient(SAM.Core.FluidMaterial,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Calculates Heat Transfer Coefficient (Thermal Conductance) [W/m2K] <see href="https://www.edsl.net/htmlhelp/Building_Simulator/ParametersforGasLayers.htm">source</see>
+            </summary>
+            <param name="fluidMaterial">SAM Fluid Material</param>
+            <param name="temperatureDifference">Temperature difference between glass surfaces bounding the fluid space</param>
+            <param name="width">Width of the space , default 0.0012m</param>
+            <param name="meanTemperature">Mean Temperature</param>
+            <param name="angle">Angle of heat flow direction in radians (measured in 2D from Upward direction (0, 1) Vector2D.SignedAngle(Vector2D)), angle less than 0 considered as downward direction</param>
+            <returns>Heat Transfer Coefficient [W/m2K]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.HeatTransferCoefficient(SAM.Core.FluidMaterial,System.Double,System.Double)">
+            <summary>
+            Calculates Heat Transfer Coefficient (Thermal Conductance) [W/m2K] for temperature difference 15K (Temperature difference between glass surfaces bounding the fluid space) and mean temperature 283<see href="https://www.edsl.net/htmlhelp/Building_Simulator/ParametersforGasLayers.htm">source</see>
+            </summary>
+            <param name="fluidMaterial">SAM Fluid Material</param>
+            <param name="width">Width of the space , default 0.0012m</param>
+            <param name="angle">Angle of heat flow direction in radians (measured in 2D from Upward direction (0, 1) Vector2D.SignedAngle(Vector2D)), angle less than 0 considered as downward direction</param>
+            <returns>Heat Transfer Coefficient [W/m2K]</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.Azimuth(SAM.Analytical.Panel)">
+            <summary>
+            Azimuth of the panel expressed in degrees. Reference direction for calculated Azimuth and WorldY
+            </summary>
+            <param name="panel">Panel</param>
+            <returns>Azimuth expressed in degrees</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.Tilt(SAM.Analytical.Panel)">
+            <summary>
+            Tilit of the Panel mesured in degrees
+            </summary>
+            <param name="panel">SAM Analytical Panel</param>
+            <returns>Tilt in degrees</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.Tilt(SAM.Analytical.Aperture)">
+            <summary>
+            Tilit of the Aperture mesured in degrees
+            </summary>
+            <param name="aperture">SAM Analytical Aperture</param>
+            <returns>Tilt in degrees</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.UpdateNormals(SAM.Analytical.AdjacencyCluster,System.Boolean,System.Double,System.Double)">
+            <summary>
+            Update panels (plane) normals to point out outside direction
+            </summary>
+            <param name="adjacencyCluster">SAM AdjacencyCluster</param>
+            <param name="includeApertures">Update normals for Apertures</param>
+            <param name="silverSpacing">Silver Spacing Tolerance</param>
+            <param name="tolerance">Distance tolerance</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.UpdateNormals(SAM.Analytical.AdjacencyCluster,SAM.Analytical.Space,System.Boolean,System.Double,System.Double)">
+            <summary>
+            Update panels (plane) normals to point out outside direction
+            </summary>
+            <param name="adjacencyCluster">SAM AdjacencyCluster</param>
+            <param name="space">Space</param>
+            <param name="includeApertures">Update normals for Apertures</param>
+            <param name="silverSpacing">SilverSpacing Tolerance</param>
+            <param name="tolerance">Distance Tolerance</param>
+            <returns>Copy of panles which enclose given space</returns>
+        </member>
+        <member name="M:SAM.Analytical.Query.DefaultConstruction(SAM.Analytical.PanelType)">
+            <summary>
+            Returns Default SAM Analytical Construction for givet PanelType
+            </summary>
+            <param name="panelType">SAM Analytical PanelType</param>
+            <returns name="construction"> Default SAM Analytical Construction</returns>
+            <search>Default SAM Analytical Construction, PanelType</search> 
+        </member>
+    </members>
+</doc>

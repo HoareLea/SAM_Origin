@@ -20,28 +20,27 @@
     <OutputPath>..\..\build\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Classes\**" />
     <Compile Remove="Convert\**" />
     <Compile Remove="Create\**" />
     <Compile Remove="Enums\**" />
     <Compile Remove="Interfaces\**" />
     <Compile Remove="Modify\**" />
     <Compile Remove="Query\**" />
+    <EmbeddedResource Remove="Classes\**" />
     <EmbeddedResource Remove="Convert\**" />
     <EmbeddedResource Remove="Create\**" />
     <EmbeddedResource Remove="Enums\**" />
     <EmbeddedResource Remove="Interfaces\**" />
     <EmbeddedResource Remove="Modify\**" />
     <EmbeddedResource Remove="Query\**" />
+    <None Remove="Classes\**" />
     <None Remove="Convert\**" />
     <None Remove="Create\**" />
     <None Remove="Enums\**" />
     <None Remove="Interfaces\**" />
     <None Remove="Modify\**" />
     <None Remove="Query\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Classes\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />

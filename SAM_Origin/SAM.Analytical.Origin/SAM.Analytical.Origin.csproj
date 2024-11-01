@@ -24,17 +24,14 @@
     <Compile Remove="Create\**" />
     <Compile Remove="Enums\**" />
     <Compile Remove="Modify\**" />
-    <Compile Remove="Query\**" />
     <EmbeddedResource Remove="Classes\**" />
     <EmbeddedResource Remove="Create\**" />
     <EmbeddedResource Remove="Enums\**" />
     <EmbeddedResource Remove="Modify\**" />
-    <EmbeddedResource Remove="Query\**" />
     <None Remove="Classes\**" />
     <None Remove="Create\**" />
     <None Remove="Enums\**" />
     <None Remove="Modify\**" />
-    <None Remove="Query\**" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SAM.Analytical, Version=1.0.7829.13507, Culture=neutral, processorArchitecture=MSIL">
@@ -49,5 +46,14 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Origin_Core\Auth\Origin.Auth.Core\Origin.Auth.Core.csproj" />
+    <ProjectReference Include="..\..\Origin_Core\Data\Origin.Data.Client.net\Origin.Data.Client.net.csproj" />
+    <ProjectReference Include="..\..\Origin_Core\Data\Origin.Data\Origin.Data.Core.csproj" />
+    <ProjectReference Include="..\..\Origin_Core\Origin.Core\Origin.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Query\" />
   </ItemGroup>
 </Project>

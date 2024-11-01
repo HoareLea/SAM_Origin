@@ -27,20 +27,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Classes\**" />
-    <Compile Remove="Component\**" />
     <Compile Remove="Convert\**" />
     <Compile Remove="Interfaces\**" />
     <Compile Remove="Query\**" />
     <EmbeddedResource Remove="Classes\**" />
-    <EmbeddedResource Remove="Component\**" />
     <EmbeddedResource Remove="Convert\**" />
     <EmbeddedResource Remove="Interfaces\**" />
     <EmbeddedResource Remove="Query\**" />
     <None Remove="Classes\**" />
-    <None Remove="Component\**" />
     <None Remove="Convert\**" />
     <None Remove="Interfaces\**" />
     <None Remove="Query\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SAM.Core">
+      <HintPath>..\..\..\SAM\build\SAM.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SAM.Core.Grasshopper">
+      <HintPath>..\..\..\SAM\build\SAM.Core.Grasshopper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Grasshopper">
@@ -51,6 +56,12 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Origin_Core\Auth\Origin.Auth.Core\Origin.Auth.Core.csproj" />
+    <ProjectReference Include="..\..\Origin_Core\Data\Origin.Data.Client.net\Origin.Data.Client.net.csproj" />
+    <ProjectReference Include="..\..\Origin_Core\Data\Origin.Data\Origin.Data.Core.csproj" />
+    <ProjectReference Include="..\..\Origin_Core\Origin.Core\Origin.Core.csproj" />
   </ItemGroup>
   <PropertyGroup />
   <PropertyGroup>

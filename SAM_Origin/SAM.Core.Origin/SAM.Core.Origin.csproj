@@ -20,31 +20,7 @@
     <OutputPath>..\..\build\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Convert\**" />
-    <Compile Remove="Enums\**" />
-    <Compile Remove="Interfaces\**" />
-    <Compile Remove="Modify\**" />
-    <Compile Remove="Query\**" />
-    <EmbeddedResource Remove="Convert\**" />
-    <EmbeddedResource Remove="Enums\**" />
-    <EmbeddedResource Remove="Interfaces\**" />
-    <EmbeddedResource Remove="Modify\**" />
-    <EmbeddedResource Remove="Query\**" />
-    <None Remove="Convert\**" />
-    <None Remove="Enums\**" />
-    <None Remove="Interfaces\**" />
-    <None Remove="Modify\**" />
-    <None Remove="Query\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Create\" />
-    <Folder Include="Classes\" />
-    <Folder Include="Create\" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>
